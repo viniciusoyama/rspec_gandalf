@@ -1,6 +1,12 @@
 require 'matchers/gandalf'
+require 'rspec'
 
-module Kernel
-  alias :shall :should
-  alias :shall_not :should_not
+class Object
+  def shall(*args)
+    should(*args)
+  end
+  
+  def shall_not(*args)
+    should_not(*args)
+  end
 end

@@ -2,6 +2,20 @@
 
 require 'spec_helper'
 
-describe 'Hobbit' do
-  it { should_not pass }
+class Balrog;end;
+
+class Men;end;
+
+class Hobbit;end;
+
+class TrollRog < Balrog;end;
+
+class PretaGil < Balrog;end;
+
+describe Hobbit do
+  it { shall_not pass }
+end
+
+describe PretaGil do
+  it { shall pass }
 end

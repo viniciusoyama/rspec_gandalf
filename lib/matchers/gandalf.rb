@@ -1,17 +1,21 @@
 module RSpecGandalf
   module Matchers  
     class Pass
-      def matches?(described_class)
-        @described_class = described_class
+      def matches?(described_object)
+        @described_class = described_object.class
         shall_pass?()
       end
 
       def failure_message_for_should
-        "ATTENTION: #{@described_class.to_s} is a flame of Udun and SHALL NOT PASS."
+        if @class_ancestors_contains_balrog
+          "RUN YOU FOOL. You cannot trick me. \nATTENTION: #{@described_class.name} is a flame of Udun and SHALL NOT PASS"
+        else
+          "ATTENTION: #{@described_class.name} is a flame of Udun and SHALL NOT PASS."
+        end
       end
 
       def failure_message_for_should_not
-        "Wow. Calm down man. You aren't a Balrog. You shall pass. But be warned: One does not simply shall pass the test."
+        "Wow. Calm down. You aren't a Balrog and shall pass. But be warned: One does not simply shall pass the test."
       end
 
       def shall_pass?
@@ -19,7 +23,10 @@ module RSpecGandalf
       end
 
       def is_balrog?
-        !!(@described_class.to_s.match(/balrog/i))
+        class_name_contains_balrog = !!(@described_class.name.match(/balrog/i))
+        @class_ancestors_contains_balrog = @described_class.ancestors.reduce(class_name_contains_balrog) { |mem, class_name| 
+          (mem || !!(class_name.name.match(/balrog/i)))
+        }
       end
     end
 
