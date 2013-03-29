@@ -1,6 +1,5 @@
 # coding: utf-8
-
-require 'spec_helper'
+require 'rspec_gandalf'
 
 class Balrog;end;
 
@@ -12,10 +11,18 @@ class TrollRog < Balrog;end;
 
 class PretaGil < Balrog;end;
 
-describe Hobbit do
+describe Men do
+  it { shall pass }
+end
+
+describe Balrog do
+  it { shall pass }
+end
+
+describe TrollRog do
   it { shall pass }
 end
 
 describe PretaGil do
-  it { shall pass }
+  it { shall_not pass }
 end

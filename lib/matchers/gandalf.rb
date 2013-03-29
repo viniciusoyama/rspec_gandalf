@@ -6,8 +6,9 @@ RSpec::Matchers.define :pass do
   end
 
   failure_message_for_should do |described_object|
-    if @class_ancestors_contains_balrog
-      "RUN YOU FOOL. You cannot trick me. \nATTENTION: #{described_object.class.name} is a flame of Udun and SHALL NOT PASS"
+
+    if class_ancestors_contains_balrog?(described_object.class)
+      "RUN YOU FOOL. Your disguise doesn't trick me. \nATTENTION: #{described_object.class.name} is a flame of Udun and SHALL NOT PASS"
     else
       "ATTENTION: #{described_object.class.name} is a flame of Udun and SHALL NOT PASS."
     end
@@ -23,7 +24,12 @@ RSpec::Matchers.define :pass do
 
   def is_balrog?(described_class)
     class_name_contains_balrog = !!(described_class.name.match(/balrog/i))
-    @class_ancestors_contains_balrog = described_class.ancestors.reduce(class_name_contains_balrog) { |mem, class_name| 
+    class_name_contains_balrog || class_ancestors_contains_balrog?(described_class)
+  end
+
+  def class_ancestors_contains_balrog?(described_class)
+    valid_ancestors = described_class.ancestors[1..(described_class.ancestors.size)]
+    valid_ancestors.reduce(false) { |mem, class_name| 
       (mem || !!(class_name.name.match(/balrog/i)))
     }
   end
