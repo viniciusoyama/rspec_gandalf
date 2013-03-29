@@ -1,3 +1,5 @@
+# coding: utf-8
+
 RSpec::Matchers.define :pass do
   match do |described_object|
     shall_pass?(described_object)
