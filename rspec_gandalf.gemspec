@@ -6,14 +6,14 @@ Gem::Specification.new do |gem|
   gem.platform      = Gem::Platform::RUBY
   gem.description   = %q{Bad tests shall not pass!}
   gem.summary       = %q{One does not simply pass the tests!}
-  gem.homepage      = "https://github.com/codus/rest_api"
+  gem.homepage      = "https://github.com/viniciusoyama/rspec_gandalf"
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.name          = "rspec_gandalf"
   gem.require_paths = ["lib"]
-  gem.version       = "0.1"
+  gem.version       = "0.1.1"
 
   gem.add_dependency('rspec', '~> 2.13')
 end
