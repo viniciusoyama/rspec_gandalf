@@ -5,7 +5,7 @@ class Object
   def shall(*args)
     should(*args)
   end
-  
+
   def shall_not(*args)
     should_not(*args)
   end

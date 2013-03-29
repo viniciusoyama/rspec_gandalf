@@ -13,7 +13,7 @@ class TrollRog < Balrog;end;
 class PretaGil < Balrog;end;
 
 describe Hobbit do
-  it { shall_not pass }
+  it { shall pass }
 end
 
 describe PretaGil do
